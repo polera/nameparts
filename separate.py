@@ -68,6 +68,14 @@ class Name:
   has_generation = property(get_has_generation)
   
   def __clean(self):
+    # last name, first style
+    comma_index = self.__full_name.find(",")
+    comma_index_value = None
+    if comma_index > -1:
+      comma_index_value = self.__full_name[:comma_index]
+      if comma_index_value.upper() in self.SALUTATIONS:
+        comma_index_value = None
+      
     for supplemental_text in self.SUPPLEMENTAL_INFO:
       supplemental_index = self.__full_name.upper().find(supplemental_text)
       if supplemental_index > -1:
@@ -84,6 +92,10 @@ class Name:
       # remove excess spaces from the beginning and end of items
       self.__split_name[index] = part.strip(" ")
       index += 1
+    if self.__split_name[0] == comma_index_value:
+      print "We need to re-order this name..."
+      
+      
   def __repr__(self):
     return unicode("<separate.Name: '%s'>" % self.__full_name)
       
@@ -138,6 +150,15 @@ class Name:
        name_parts[0].upper() not in self.LNPREFIXES:
       self.__middle_name = name_parts[0]
       del name_parts[0]
+      if len(name_parts) > 1:
+        mult_middle = True
+        while mult_middle:
+          if name_parts[0] in self.LNPREFIXES or \
+             len(name_parts) == 1:
+            mult_middle = False
+          else:
+            self.__middle_name += " %s" % name_parts[0]
+            del name_parts[0]
       self.__last_name = " ".join(name_parts)
     else:
       self.__last_name = " ".join(name_parts)
