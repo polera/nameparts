@@ -93,7 +93,21 @@ class Name:
       self.__split_name[index] = part.strip(" ")
       index += 1
     if self.__split_name[0] == comma_index_value:
-      print "We need to re-order this name..."
+      slot_it = True
+      index = -1
+      while slot_it:
+        item_at_index = self.__split_name[index].upper() 
+        if item_at_index in self.GENERATIONS or \
+           item_at_index in self.SUFFIXES:
+          index -= 1
+        else:
+          insert_index = index + 1
+          if insert_index == 0:
+            insert_index = len(self.__split_name)
+          self.__split_name.insert(insert_index, self.__split_name[0])
+          del self.__split_name[0]
+          slot_it = False
+      self.__full_name = " ".join(self.__split_name)
       
       
   def __repr__(self):
@@ -153,7 +167,7 @@ class Name:
       if len(name_parts) > 1:
         mult_middle = True
         while mult_middle:
-          if name_parts[0] in self.LNPREFIXES or \
+          if name_parts[0].upper() in self.LNPREFIXES or \
              len(name_parts) == 1:
             mult_middle = False
           else:
@@ -213,3 +227,6 @@ class Name:
             'generation' : self.generation,
             'suffix': self.suffix}
   as_dict = property(get_name_as_dict)
+  
+if __name__ == "__main__":
+  n = Name("Polera, James")
