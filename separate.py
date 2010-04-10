@@ -1,6 +1,7 @@
 class Name:
    
-  SALUTATIONS = ['MR','MS','MRS','DR','MISS']
+  SALUTATIONS = ['MR','MS','MRS','DR','MISS','DOCTOR','CORP','SGT','PVT','JUDGE',
+                 'CAPT','HON','OFFICER','REV']
   GENERATIONS = ['JR','SR','I','II','III','IV','V','VI','VII','VIII','IX','X']
   SUFFIXES    = ['ESQ','PHD','MD']
   LNPREFIXES  = ['DE', 'DA', 'DI','LA', 'DU', 'DEL', 'DEI', 'VDA', 'DELLO', 'DELLA', 
