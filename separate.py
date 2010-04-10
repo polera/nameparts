@@ -51,9 +51,19 @@ class Name:
   has_suffix = property(get_has_suffix)
 
   def get_has_generation(self):
+    if not self.__processed:
+      self.__clean()
+    index = 0
     for part in self.__split_name:
       if part.upper() in self.GENERATIONS:
-        return True
+        if part == self.__split_name[-1]:
+          return True
+        if self.__split_name[index + 1].upper() not in self.SUFFIXES:
+          index += 1
+          continue
+        else:
+          return True
+      index += 1
     return False
   has_generation = property(get_has_generation)
   
@@ -89,6 +99,23 @@ class Name:
       self.__salutation = name_parts[0]
       del name_parts[0]
 
+    # Find generation, save it, remove it
+    if self.has_generation:
+      index = 0
+      for part in name_parts:
+        if part.upper() in self.GENERATIONS:
+          if part == name_parts[-1]:
+            self.__generation = part
+            del name_parts[index]
+            break
+          store_generation = True
+          if name_parts[index + 1].upper() not in self.SUFFIXES:
+            store_generation = False
+          if store_generation:
+            self.__generation = part
+            del name_parts[index]
+        index += 1
+        
     # Find suffix (or suffixes), save it, remove it
     if self.has_suffix:
       suffixes = []
@@ -101,14 +128,6 @@ class Name:
           suffix_present = False
       self.__suffix = ", ".join(suffixes)
     
-    # Find generation, save it, remove it
-    if self.has_generation:
-      index = 0
-      for part in name_parts:
-        if part.upper() in self.GENERATIONS:
-          self.__generation = part
-          del name_parts[index]
-        index += 1
       
     # Save first name, remove it
     self.__first_name = name_parts[0]
@@ -173,5 +192,3 @@ class Name:
             'generation' : self.generation,
             'suffix': self.suffix}
   as_dict = property(get_name_as_dict)
-  
-  
