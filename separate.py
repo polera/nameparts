@@ -231,3 +231,6 @@ class Name:
   
 if __name__ == "__main__":
   n = Name("Polera, James")
+  print n.as_dict
+  n = Name("Otto von Bismark")
+  print n.as_dict
