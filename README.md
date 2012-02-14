@@ -5,6 +5,7 @@ nameparts is a Python module that I wrote to address a problem splitting full na
 parts (first, middle, last, etc.)
 
 You can use it like this:
+
       >>> from nameparts import Name
       >>> n = Name("Thurston Howel III")
       >>> n.first_name
