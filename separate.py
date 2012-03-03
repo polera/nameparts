@@ -1,15 +1,23 @@
+# -*- coding: utf-8 -*-
+
 class Name:
    
   SALUTATIONS = ['MR','MS','MRS','DR','MISS','DOCTOR','CORP','SGT','PVT','JUDGE',
-                 'CAPT','HON','OFFICER','REV']
-  GENERATIONS = ['JR','SR','I','II','III','IV','V','VI','VII','VIII','IX','X']
+                 'CAPT','COL','MAJ','LT','LIEUTENANT','PRM','PATROLMAN','HON',
+                 'OFFICER','REV','PRES','PRESIDENT',
+                 'GOV','GOVERNOR','VICE PRESIDENT','VP','MAYOR']
+  GENERATIONS = ['JR','SR','I','II','III','IV','V','VI','VII','VIII','IX','X',
+                 '1ST','2ND','3RD','4TH','5TH','6TH','7TH','8TH','9TH','10TH',
+                 'FIRST','SECOND','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH',
+                 'EIGHTH','NINTH','TENTH']
   SUFFIXES    = ['ESQ','PHD','MD']
   LNPREFIXES  = ['DE', 'DA', 'DI','LA', 'DU', 'DEL', 'DEI', 'VDA', 'DELLO', 'DELLA', 
                  'DEGLI', 'DELLE', 'VAN', 'VON', 'DER', 'DEN', 'HEER', 'TEN', 'TER', 
                  'VANDE', 'VANDEN', 'VANDER', 'VOOR', 'VER', 'AAN', 'MC', 'BEN','SAN',
                  'SAINZ']
   NON_NAME    = ['A.K.A.','AKA','A/K/A','F.K.A','FKA','F/K/A','N/K/A','FICTITIOUS']
-  CORP_ENTITY = ['NA','CORP','CO','INC','ASSOCIATES','SERVICE','LLC','LLP','PARTNERS','R/A','C/O', 'COUNTY','STATE',
+  CORP_ENTITY = ['NA','CORP','CO','INC','ASSOCIATES','SERVICE','LLC','LLP','PARTNERS',
+                 'R/A','C/O', 'COUNTY','STATE',
                  'BANK','GROUP','MUTUAL','FARGO']
   SUPPLEMENTAL_INFO = ['WIFE OF','HUSBAND OF','SON OF','DAUGHTER OF']
 
@@ -81,7 +89,9 @@ class Name:
       supplemental_index = self.__full_name.upper().find(supplemental_text)
       if supplemental_index > -1:
         self.__full_name = self.__full_name[0:supplemental_index].strip()
-    unwanted = ['.',',','/']
+
+    unwanted = ['.',',','/','the']
+
     for char in unwanted:
       self.__full_name = self.__full_name.replace(char,'')
     self.__split_name = self.__full_name.split(" ")
@@ -112,7 +122,7 @@ class Name:
       
       
   def __repr__(self):
-    return unicode("<separate.Name: '%s'>" % self.__full_name)
+    return unicode("<Name: '%s'>" % self.__full_name)
       
   def process_name(self):  
     if self.__processed or self.looks_corporate or self.has_non_name_values:
@@ -233,4 +243,11 @@ if __name__ == "__main__":
   n = Name("Polera, James")
   print n.as_dict
   n = Name("Otto von Bismark")
+  print n.as_dict
+
+
+  #TODO: Get these working
+  n = Name("Thurston Howell the 3rd")
+  print n.as_dict
+  n = Name("Bruce Wayne a/k/a Batman")
   print n.as_dict
