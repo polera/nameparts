@@ -22,6 +22,10 @@ You can use it like this:
       >>> n.middle_name
       'Paul'
 
+License
+-------
+nameparts is released under the BSD license.
+
 Comments/Questions/Improvements
 -------------------------------
 Any of the above are welcome.  Contact me at the email address in my profile.
