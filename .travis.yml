@@ -5,4 +5,4 @@ python:
 
 install: python setup.py install
 
-script: python name_tests.py
+script: python setup.py test
