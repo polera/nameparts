@@ -100,6 +100,7 @@ class Name:
       # remove lengthless items
       if len(part) == 0:
         del self.__split_name[index]
+        continue
       # remove excess spaces from the beginning and end of items
       self.__split_name[index] = part.strip(" ")
       index += 1
@@ -240,14 +241,14 @@ class Name:
   as_dict = property(get_name_as_dict)
   
 if __name__ == "__main__":
-  n = Name("Polera, James")
-  print n.as_dict
-  n = Name("Otto von Bismark")
-  print n.as_dict
-
+#  n = Name("Polera, James")
+#  print n.as_dict
+#  n = Name("Otto von Bismark")
+#  print n.as_dict
+#  n = Name("Thurston Howell the 3rd")
+#  print n.as_dict
 
   #TODO: Get these working
-  n = Name("Thurston Howell the 3rd")
-  print n.as_dict
+
   n = Name("Bruce Wayne a/k/a Batman")
   print n.as_dict
