@@ -1,3 +1,6 @@
 syntax: glob
 *.pyc
 *.wpr
+.idea
+dist
+nameparts.egg-info
