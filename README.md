@@ -13,7 +13,9 @@ You can use it like this:
       >>> n.last_name
       'Howel'
       >>> n.as_dict
-      {'first_name': 'Thurston', 'last_name': 'Howel', 'middle_name': None, 'suffix': None, 'generation': 'III', 'salutation': None}
+      {'first_name': 'Thurston', 'last_name': 'Howel', \
+        'middle_name': None, 'suffix': None, 'generation': 'III', \
+        'salutation': None}
       >>> n = Name("Smith, John Paul")
       >>> n.first_name
       'John'
@@ -21,6 +23,14 @@ You can use it like this:
       'Smith'
       >>> n.middle_name
       'Paul'
+
+Installing
+----------
+From source:
+       python setup.py install
+
+via pip:
+       pip install nameparts
 
 License
 -------
