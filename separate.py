@@ -27,7 +27,12 @@ class Name:
         return True
     return False
   has_non_name_values = property(get_has_non_name_values)
-  
+
+  def split_on_non_name(self):
+    for part in self.__split_name:
+      if part.upper() in self.NON_NAME:
+        return self.__full_name.split(part)[0]
+
   def get_has_supplemental_info(self):
     try:
       for supplemental_info in self.SUPPLEMENTAL_INFO:
@@ -77,6 +82,8 @@ class Name:
   has_generation = property(get_has_generation)
   
   def __clean(self):
+    if self.has_non_name_values:
+      self.__full_name = self.split_on_non_name()
     # last name, first style
     comma_index = self.__full_name.find(",")
     comma_index_value = None
@@ -126,8 +133,9 @@ class Name:
     return unicode("<Name: '%s'>" % self.__full_name)
       
   def process_name(self):  
-    if self.__processed or self.looks_corporate or self.has_non_name_values:
+    if self.__processed or self.looks_corporate:
       return
+
     self.__clean()
 
     name_parts = self.__split_name
@@ -241,14 +249,23 @@ class Name:
   as_dict = property(get_name_as_dict)
   
 if __name__ == "__main__":
-#  n = Name("Polera, James")
-#  print n.as_dict
-#  n = Name("Otto von Bismark")
-#  print n.as_dict
-#  n = Name("Thurston Howell the 3rd")
-#  print n.as_dict
+  n = Name("Polera, James")
+  print n.as_dict
 
-  #TODO: Get these working
+  n = Name("Otto von Bismark")
+  print n.as_dict
+
+  n = Name("Thurston Howell the 3rd")
+  print n.as_dict
 
   n = Name("Bruce Wayne a/k/a Batman")
+  print n.as_dict
+
+  n = Name("J. Edgar Hoover")
+  print n.as_dict
+
+  n = Name("George Herbert Walker Bush")
+  print n.as_dict
+
+  n = Name("John Doe fictitious husband of Jane Doe")
   print n.as_dict
