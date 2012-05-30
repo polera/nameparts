@@ -247,25 +247,3 @@ class Name:
             'generation' : self.generation,
             'suffix': self.suffix}
   as_dict = property(get_name_as_dict)
-  
-if __name__ == "__main__":
-  n = Name("Polera, James")
-  print n.as_dict
-
-  n = Name("Otto von Bismark")
-  print n.as_dict
-
-  n = Name("Thurston Howell the 3rd")
-  print n.as_dict
-
-  n = Name("Bruce Wayne a/k/a Batman")
-  print n.as_dict
-
-  n = Name("J. Edgar Hoover")
-  print n.as_dict
-
-  n = Name("George Herbert Walker Bush")
-  print n.as_dict
-
-  n = Name("John Doe fictitious husband of Jane Doe")
-  print n.as_dict
