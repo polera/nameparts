@@ -1,5 +1,6 @@
 nameparts
 =========
+[![Build Status](https://secure.travis-ci.org/polera/nameparts.png)](http://travis-ci.org/polera/nameparts)
 
 nameparts is a Python module that I wrote to address a problem splitting full names into individual
 parts (first, middle, last, etc.)
