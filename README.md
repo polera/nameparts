@@ -28,10 +28,14 @@ You can use it like this:
 Installing
 ----------
 From source:
+
        python setup.py install
 
 via pip:
+
        pip install nameparts
+
+nameparts runs on CPython 2.6, 2.7, 3.2 and PyPy
 
 License
 -------

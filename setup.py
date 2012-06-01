@@ -21,24 +21,25 @@ if sys.argv[-1] == 'publish':
 
 settings.update(
   name='nameparts',
-  version='0.5.2',
+  version='0.5.3',
   description='Takes a full human name and splits it into individual parts',
   long_description=read('README.md'),
   author='James Polera',
   author_email='james@uncryptic.com',
   url='https://github.com/polera/nameparts',
-  keywords='name text processing',
+  keywords=['name', 'text', 'processing'],
   py_modules=['nameparts',],
   tests_require = ['unittest2',],
   test_suite = "name_tests",
   license='BSD',
   classifiers=(
-    'Development Status :: 4 - Beta',
+    'Development Status :: 5 - Production/Stable',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: BSD License',
     'Programming Language :: Python',
     'Programming Language :: Python :: 2.6',
     'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3.2',
   )
 )
 
