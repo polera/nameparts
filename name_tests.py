@@ -2,7 +2,11 @@ __author__ = 'James Polera'
 __since__ = '2012.05.29'
 __email__ = 'james@uncryptic.com'
 
-import unittest2 as unittest
+try:
+  import unittest2 as unittest
+except ImportError:
+  import unittest
+
 from nameparts import  Name
 
 
