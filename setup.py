@@ -29,7 +29,7 @@ settings.update(
   url='https://github.com/polera/nameparts',
   keywords=['name', 'text', 'processing'],
   py_modules=['nameparts',],
-  tests_require = ['unittest2',],
+  tests_require = ['unittest2',] if sys.version[0] != '3' else [],
   test_suite = "name_tests",
   license='BSD',
   classifiers=(
