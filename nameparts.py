@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 
 class Name:
-   
+
   SALUTATIONS = ['MR','MS','MRS','DR','MISS','DOCTOR','CORP','SGT','PVT','JUDGE',
                  'CAPT','COL','MAJ','LT','LIEUTENANT','PRM','PATROLMAN','HON',
                  'OFFICER','REV','PRES','PRESIDENT',
-                 'GOV','GOVERNOR','VICE PRESIDENT','VP','MAYOR']
+                 'GOV','GOVERNOR','VICE PRESIDENT','VP','MAYOR','SIR','MADAM','HONERABLE']
   GENERATIONS = ['JR','SR','I','II','III','IV','V','VI','VII','VIII','IX','X',
                  '1ST','2ND','3RD','4TH','5TH','6TH','7TH','8TH','9TH','10TH',
                  'FIRST','SECOND','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH',
                  'EIGHTH','NINTH','TENTH']
   SUFFIXES    = ['ESQ','PHD','MD']
-  LNPREFIXES  = ['DE', 'DA', 'DI','LA', 'DU', 'DEL', 'DEI', 'VDA', 'DELLO', 'DELLA', 
-                 'DEGLI', 'DELLE', 'VAN', 'VON', 'DER', 'DEN', 'HEER', 'TEN', 'TER', 
+  LNPREFIXES  = ['DE', 'DA', 'DI','LA', 'DU', 'DEL', 'DEI', 'VDA', 'DELLO', 'DELLA',
+                 'DEGLI', 'DELLE', 'VAN', 'VON', 'DER', 'DEN', 'HEER', 'TEN', 'TER',
                  'VANDE', 'VANDEN', 'VANDER', 'VOOR', 'VER', 'AAN', 'MC', 'BEN','SAN',
-                 'SAINZ','IBN','BIN','BINT']
+                 'SAINZ','BIN','LI','LE','DES','AM','AUS\'M','VOM','ZUM','ZUR','TEN']
   NON_NAME    = ['A.K.A.','AKA','A/K/A','F.K.A','FKA','F/K/A','N/K/A','FICTITIOUS']
   CORP_ENTITY = ['NA','CORP','CO','INC','ASSOCIATES','SERVICE','LLC','LLP','PARTNERS',
                  'R/A','C/O', 'COUNTY','STATE',
@@ -42,7 +42,7 @@ class Name:
       pass
     return False
   has_supplemental_info = property(get_has_supplemental_info)
-  
+
   def get_has_salutation(self):
     if self.__split_name[0].upper() in self.SALUTATIONS:
       return True
@@ -57,7 +57,7 @@ class Name:
         return True
     return False
   looks_corporate = property(get_looks_corporate)
-  
+
   def get_has_suffix(self):
     if self.__split_name[-1].upper() in self.SUFFIXES:
       return True
@@ -80,7 +80,7 @@ class Name:
       index += 1
     return False
   has_generation = property(get_has_generation)
-  
+
   def __clean(self):
     if self.has_non_name_values:
       self.__full_name = self.split_on_non_name()
@@ -91,7 +91,7 @@ class Name:
       comma_index_value = self.__full_name[:comma_index]
       if comma_index_value.upper() in self.SALUTATIONS:
         comma_index_value = None
-      
+
     for supplemental_text in self.SUPPLEMENTAL_INFO:
       supplemental_index = self.__full_name.upper().find(supplemental_text)
       if supplemental_index > -1:
@@ -115,7 +115,7 @@ class Name:
       slot_it = True
       index = -1
       while slot_it:
-        item_at_index = self.__split_name[index].upper() 
+        item_at_index = self.__split_name[index].upper()
         if item_at_index in self.GENERATIONS or \
            item_at_index in self.SUFFIXES:
           index -= 1
@@ -127,19 +127,19 @@ class Name:
           del self.__split_name[0]
           slot_it = False
       self.__full_name = " ".join(self.__split_name)
-      
-      
+
+
   def __repr__(self):
     return unicode("<Name: '%s'>" % self.__full_name)
-      
-  def process_name(self):  
+
+  def process_name(self):
     if self.__processed or self.looks_corporate:
       return
 
     self.__clean()
 
     name_parts = self.__split_name
-    
+
     # Find salutation, save it, remove it
     if self.has_salutation:
       self.__salutation = name_parts[0]
@@ -161,24 +161,24 @@ class Name:
             self.__generation = part
             del name_parts[index]
         index += 1
-        
+
     # Find suffix (or suffixes), save it, remove it
     if self.has_suffix:
       suffixes = []
       suffix_present = True
       while suffix_present:
         if name_parts[-1].upper() in self.SUFFIXES:
-          suffixes.insert(0,name_parts[-1])        
+          suffixes.insert(0,name_parts[-1])
           del name_parts[-1]
         else:
           suffix_present = False
       self.__suffix = ", ".join(suffixes)
-    
-      
+
+
     # Save first name, remove it
     self.__first_name = name_parts[0]
     del name_parts[0]
-    
+
     # The rest...
     if len(name_parts) > 1 and \
        name_parts[0].upper() not in self.LNPREFIXES:
@@ -198,7 +198,7 @@ class Name:
       self.__last_name = " ".join(name_parts)
     self.__processed = True
     return
-  
+
   def __init__(self, name):
     self.__full_name    = name
     self.__split_name   = []
@@ -210,23 +210,23 @@ class Name:
     self.__suffix       = None
     self.__processed    = False
     self.process_name()
-    
+
   def get_full_name(self):
     return self.__full_name
   full_name = property(get_full_name)
-  
+
   def get_salutation(self):
     return self.__salutation
   salutation = property(get_salutation)
-  
+
   def get_first_name(self):
     return self.__first_name
   first_name = property(get_first_name)
-  
+
   def get_middle_name(self):
     return self.__middle_name
   middle_name = property(get_middle_name)
-  
+
   def get_last_name(self):
     return self.__last_name
   last_name = property(get_last_name)
@@ -234,16 +234,16 @@ class Name:
   def get_generation(self):
     return self.__generation
   generation = property(get_generation)
-  
+
   def get_suffix(self):
     return self.__suffix
   suffix = property(get_suffix)
-  
+
   def get_name_as_dict(self):
-    return {'salutation': self.salutation, 
-            'first_name': self.first_name, 
-            'last_name': self.last_name, 
-            'middle_name': self.middle_name, 
+    return {'salutation': self.salutation,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'middle_name': self.middle_name,
             'generation' : self.generation,
             'suffix': self.suffix}
   as_dict = property(get_name_as_dict)
