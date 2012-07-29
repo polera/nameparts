@@ -14,7 +14,7 @@ class Name:
   LNPREFIXES  = ['DE', 'DA', 'DI','LA', 'DU', 'DEL', 'DEI', 'VDA', 'DELLO', 'DELLA', 
                  'DEGLI', 'DELLE', 'VAN', 'VON', 'DER', 'DEN', 'HEER', 'TEN', 'TER', 
                  'VANDE', 'VANDEN', 'VANDER', 'VOOR', 'VER', 'AAN', 'MC', 'BEN','SAN',
-                 'SAINZ']
+                 'SAINZ','IBN','BIN','BINT']
   NON_NAME    = ['A.K.A.','AKA','A/K/A','F.K.A','FKA','F/K/A','N/K/A','FICTITIOUS']
   CORP_ENTITY = ['NA','CORP','CO','INC','ASSOCIATES','SERVICE','LLC','LLP','PARTNERS',
                  'R/A','C/O', 'COUNTY','STATE',

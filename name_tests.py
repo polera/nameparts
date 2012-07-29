@@ -102,5 +102,16 @@ class TestNameWithExtraneousInfo(unittest.TestCase):
     "Test that self.name is an instance of Name"
     self.assertIsInstance(self.name, Name)
 
+class TestPrefixedLastName(unittest.TestCase):
+  def setUp(self):
+    "Long name with Prefixes Last Name"
+    self.name = Name("Saleh ibn Tariq ibn Khalid al-Fulan")
+    self.assertTrue("Saleh" == self.name.first_name)
+    self.assertTrue("ibn Tariq ibn Khalid al-Fulan" == self.name.last_name)
+
+  def test_isinstance(self):
+    "Test that self.name is an instance of Name"
+    self.assertIsInstance(self.name, Name)
+
 if __name__ == '__main__':
   unittest.main()
