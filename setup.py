@@ -21,7 +21,7 @@ if sys.argv[-1] == 'publish':
 
 settings.update(
   name='nameparts',
-  version='0.5.4',
+  version='0.5.5',
   description='Takes a full human name and splits it into individual parts',
   long_description=read('README.md'),
   author='James Polera',

@@ -113,5 +113,16 @@ class TestPrefixedLastName(unittest.TestCase):
     "Test that self.name is an instance of Name"
     self.assertIsInstance(self.name, Name)
 
+class TestMisplacedApostrophe(unittest.TestCase):
+  def setUp(self):
+    "Name with misplaced apostrophe"
+    self.name = Name("John O' Hurley")
+    self.assertTrue("John" == self.name.first_name)
+    self.assertTrue("O'Hurley" == self.name.last_name)
+
+  def test_isinstance(self):
+    "Test that self.name is an instance of Name"
+    self.assertIsInstance(self.name, Name)
+
 if __name__ == '__main__':
   unittest.main()

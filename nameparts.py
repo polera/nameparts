@@ -182,9 +182,13 @@ class Name:
     # The rest...
     if len(name_parts) > 1 and \
        name_parts[0].upper() not in self.LNPREFIXES:
-      self.__middle_name = name_parts[0]
-      del name_parts[0]
-      if len(name_parts) > 1:
+      misplaced_apostrophe = False
+      if "'" in name_parts[0]:
+        misplaced_apostrophe = True
+      else:
+        self.__middle_name = name_parts[0]
+        del name_parts[0]
+      if len(name_parts) > 1 and not misplaced_apostrophe:
         mult_middle = True
         while mult_middle:
           if name_parts[0].upper() in self.LNPREFIXES or \
@@ -193,7 +197,7 @@ class Name:
           else:
             self.__middle_name += " %s" % name_parts[0]
             del name_parts[0]
-      self.__last_name = " ".join(name_parts)
+      self.__last_name = "".join(name_parts)
     else:
       self.__last_name = " ".join(name_parts)
     self.__processed = True
