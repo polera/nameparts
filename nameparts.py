@@ -71,18 +71,19 @@ class Name:
     def get_has_aliases(self):
         if not self.__processed:
             self.__clean()
-        to_delete = []
+        alias_boundaries = []
         for (index, part) in enumerate(self.__split_name):
             if part.startswith(('"', "'")):
-                self.__aliases = part
-                to_delete.append(self.__split_name[index])
+                alias_boundaries.append(index)
             elif part.endswith(('"', "'")):
-                self.__aliases = "{0} {1}".format(self.__aliases, part)
-                to_delete.append(self.__split_name[index])
-        if len(getattr(self, '__aliases', '')) > 0:
-            for part in to_delete:
+                alias_boundaries.append(index)
+        if len(alias_boundaries) > 0 and len(alias_boundaries) % 2 == 0:
+            aliases = self.__split_name[alias_boundaries[0]:alias_boundaries[1]+1]
+            self.__aliases = " ".join(aliases)
+            for part in aliases:
                 del self.__split_name[self.__split_name.index(part)]
             return True
+
 
         return False
 
@@ -294,3 +295,6 @@ class Name:
                 'aliases': self.aliases, }
 
     as_dict = property(get_name_as_dict)
+
+if __name__ == "__main__":
+    n =  Name('Philip Francis "The Scooter" Rizzuto, deceased')
