@@ -21,7 +21,7 @@ if sys.argv[-1] == 'publish':
 
 settings.update(
   name='nameparts',
-  version='0.5.6',
+  version='0.5.7',
   description='Takes a full human name and splits it into individual parts',
   long_description=read('README.md'),
   author='James Polera',
@@ -42,6 +42,7 @@ settings.update(
     'Programming Language :: Python :: 2.7',
     'Programming Language :: Python :: 3.2',
     'Programming Language :: Python :: 3.3',
+    'Programming Language :: Python :: 3.4',
     )
 )
 

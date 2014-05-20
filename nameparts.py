@@ -79,10 +79,11 @@ class Name:
             elif part.endswith(('"', "'")):
                 self.__aliases = "{0} {1}".format(self.__aliases, part)
                 to_delete.append(self.__split_name[index])
-        if len(self.__aliases) > 0:
+        if len(getattr(self, '__aliases', '')) > 0:
             for part in to_delete:
                 del self.__split_name[self.__split_name.index(part)]
             return True
+
         return False
 
     has_aliases = property(get_has_aliases)
