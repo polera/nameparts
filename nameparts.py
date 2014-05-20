@@ -295,6 +295,3 @@ class Name:
                 'aliases': self.aliases, }
 
     as_dict = property(get_name_as_dict)
-
-if __name__ == "__main__":
-    n =  Name('Philip Francis "The Scooter" Rizzuto, deceased')
