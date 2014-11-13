@@ -295,3 +295,14 @@ class Name:
                 'aliases': self.aliases, }
 
     as_dict = property(get_name_as_dict)
+
+
+def MultiName(name, splitter='a/k/a'):
+    name_list = []
+    if name.find(splitter) > -1:
+        names = name.split(splitter)
+        for name in names:
+            name_list.append(Name(name.strip()))
+        return name_list
+    else:
+        return [Name(name)]

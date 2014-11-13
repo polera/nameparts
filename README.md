@@ -24,6 +24,24 @@ You can use it like this:
       'Smith'
       >>> n.middle_name
       'Paul'
+      
+If you suspect you may see more than one name in a given field (i.e. separated by a/k/a) you can use MultiName:
+
+      >>> from nameparts import MultiName
+      >>> names = MultiName("Bruce Wayne a/k/a Batman")
+      >>> names
+      [<Name: 'Bruce Wayne'>, <Name: 'Batman'>]
+      >>> [n.as_dict for n in names]
+      [{'last_name': 'Wayne', 'salutation': None, 'first_name': 'Bruce', 'suffix': None, 'generation': None, 'middle_name': None, 'aliases': None}, 
+       {'last_name': '', 'salutation': None, 'first_name': 'Batman', 'suffix': None, 'generation': None, 'middle_name': None, 'aliases': None}]
+       
+MultiName automatically uses the string 'a/k/a' to split names, but you can provide an optional splitter argument to 
+override that:
+
+      >>> from nameparts import MultiName
+      >>> names = MultiName("Tony Stark | Ironman | Stark, Tony", splitter="|")
+      >>> names
+      [<Name: 'Tony Stark'>, <Name: 'Ironman'>, <Name: 'Tony Stark'>]
 
 Installing
 ----------
