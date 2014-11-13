@@ -1,1 +1,1 @@
-from nameparts import Name
+from nameparts import Name, MultiName
