@@ -32,8 +32,10 @@ If you suspect you may see more than one name in a given field (i.e. separated b
       >>> names
       [<Name: 'Bruce Wayne'>, <Name: 'Batman'>]
       >>> [n.as_dict for n in names]
-      [{'last_name': 'Wayne', 'salutation': None, 'first_name': 'Bruce', 'suffix': None, 'generation': None, 'middle_name': None, 'aliases': None}, 
-       {'last_name': '', 'salutation': None, 'first_name': 'Batman', 'suffix': None, 'generation': None, 'middle_name': None, 'aliases': None}]
+      [{'last_name': 'Wayne', 'salutation': None, 'first_name': 'Bruce', 'suffix': None, 
+        'generation': None, 'middle_name': None, 'aliases': None}, 
+       {'last_name': '', 'salutation': None, 'first_name': 'Batman', 'suffix': None, 
+        'generation': None, 'middle_name': None, 'aliases': None}]
        
 MultiName automatically uses the string 'a/k/a' to split names, but you can provide an optional splitter argument to 
 override that:
